@@ -13,7 +13,7 @@ tgt_tag="$7"            # style_1_label used to create training data [tgt style]
 base_folder="$8"        # path to data folder, where outputs of the training data creation process are stored
 device="$9"             # gpu id [comment line in script if it needs to be run on cpu]
 
-tag_generate_base="experiments/" # base dir to store outputs of inference
+tag_generate_base="experiments" # base dir to store outputs of inference
 mkdir -p $tag_generate_base
 
 # SET UNSET BPE HERE
@@ -45,7 +45,7 @@ function infer() {
     outfile="$5"
     prefer_gtag="$6"
     if [ "$BPE" -eq  1 ]; then
-        CUDA_VISIBLE_DEVICES=$device python src/translate.py --cuda --src "$src" \
+        CUDA_VISIBLE_DEVICES=$device python tag-and-generate-train/src/translate.py --cuda --src "$src" \
             --tgt "$tgt" \
             --model-file "$model" \
             --search "beam_search" \
@@ -61,7 +61,7 @@ function infer() {
             --output-file "$outfile" \
             --base-folder "$base_folder"
     else
-        CUDA_VISIBLE_DEVICES=$device python src/translate.py --cuda --src "$src" \
+        CUDA_VISIBLE_DEVICES=$device python tag-and-generate-train/src/translate.py --cuda --src "$src" \
             --tgt "$tgt" \
             --model-file "$model" \
             --search "beam_search" \
@@ -93,7 +93,7 @@ function add_eos() {
 TAGGER_INPUT="${tag_generate_base}/${jobname}_tagger_input"
 if [ $BPE -eq 1 ]; then
     echo "Running BPE on input"
-    CUDA_VISIBLE_deviceS=$device python src/subwords.py segment\
+    CUDA_VISIBLE_deviceS=$device python tag-and-generate-train/src/subwords.py segment\
                                 --model "$base_folder/en${tagger_target}_subwords.model" < "$input_file"\
                                 > "$TAGGER_INPUT"
 else     
@@ -115,7 +115,7 @@ sed -i "s/${src_tag}/${tgt_tag}/g" "${tag_generate_base}/${jobname}_tagged"
 GENERATOR_INPUT="${tag_generate_base}/${jobname}_generator_input"
 if [ $BPE -eq 1 ]; then
     echo "Running BPE on masked output"
-    CUDA_VISIBLE_deviceS=$device python src/subwords.py segment\
+    CUDA_VISIBLE_deviceS=$device python tag-and-generate-train/src/subwords.py segment\
                             --model "$base_folder/en${generator_target}_subwords.model" < "${tag_generate_base}/${jobname}_tagged" > "$GENERATOR_INPUT"
         
 else
