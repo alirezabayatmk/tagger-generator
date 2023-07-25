@@ -23,7 +23,7 @@ fi
 mkdir -p $MODEL_PTH
 
 if [ "$BPE" -eq 1 ]; then
-    python src/training.py \
+    python tag-and-generate-train/src/training.py \
         --cuda \
         --src en \
         --tgt "$tgt" \
@@ -41,7 +41,7 @@ if [ "$BPE" -eq 1 ]; then
         --clip-grad 1.1 \
         --base-folder "$base_folder"
 else
-    python src/training.py \
+    python tag-and-generate-train/src/training.py \
         --cuda \
         --src en \
         --tgt "$tgt" \

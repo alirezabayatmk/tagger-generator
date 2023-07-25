@@ -21,7 +21,7 @@ import pandas as pd
 import subprocess
 import logging
 
-from src.style_tags import TFIDFStatsGenerator, RelativeTagsGenerator, TrainDataGen
+from style_tags import TFIDFStatsGenerator, RelativeTagsGenerator, TrainDataGen
 
 
 def tag_style_markers(data_pth: str, outpath: str, style_0_label: str, style_1_label: str, tgt_lang="tagged", thresh=0.90, ngram_range=(1, 2),
@@ -118,13 +118,13 @@ def generate_tags(df_txt_class_1,
 
 
 def prepare_parallel_data_tagger(outdir, style_0_label, style_1_label, is_unimodal):
-    subprocess.check_call(f"scripts/prep_tagger.sh {outdir} {outdir} tagged {int(is_unimodal)} {style_0_label} {style_1_label}",
+    subprocess.check_call(f"tag-and-generate-data-prep/scripts/prep_tagger.sh {outdir} {outdir} tagged {int(is_unimodal)} {style_0_label} {style_1_label}",
                           shell=True)
 
 
 def prepare_parallel_data_generator(outdir, style_0_label, style_1_label, is_unimodal):
     # "${MASKED_OP_DIR}" "${MASKED_OP_DIR}" "$prefix"masked "$prefix"unmasked "$isunimodal" "$posmask" "$negmask"
-    subprocess.check_call(f"scripts/prep_generator.sh {outdir} {outdir} tagged generated {int(is_unimodal)} {style_0_label} {style_1_label}",
+    subprocess.check_call(f"tag-and-generate-data-prep/scripts/prep_generator.sh {outdir} {outdir} tagged generated {int(is_unimodal)} {style_0_label} {style_1_label}",
                           shell=True)
 
 
