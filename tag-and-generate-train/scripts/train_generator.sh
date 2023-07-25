@@ -32,11 +32,11 @@ if [ "$BPE" -eq 1 ]; then
         --n-heads 4 \
         --embed-dim 512 \
         --hidden-dim 512 \
-        --dropout 0.3 \
+        --dropout 0.2 \
         --bpe \
-        --word-dropout 0.1 \
+        --word-dropout 0.05 \
         --lr 1e-3 \
-        --n-epochs 5 \
+        --n-epochs 20 \
         --tokens-per-batch 8000 \
         --clip-grad 1.1 \
         --base-folder "$base_folder"
@@ -50,10 +50,10 @@ else
         --n-heads 4 \
         --embed-dim 512 \
         --hidden-dim 512 \
-        --dropout 0.3 \
-        --word-dropout 0.1 \
+        --dropout 0.2 \
+        --word-dropout 0.05 \
         --lr 1e-3 \
-        --n-epochs 5 \
+        --n-epochs 20 \
         --tokens-per-batch 8000 \
         --clip-grad 1.1 \
         --base-folder "$base_folder"
