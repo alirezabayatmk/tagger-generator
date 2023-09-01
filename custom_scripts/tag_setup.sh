@@ -1,25 +1,17 @@
 #!/bin/bash
 
 # git clone git@github.com:alirezabayatmk/tagger-generator.git
+# cd tagger-generator
 # chmod +x custom_scripts/tag_setup.sh
+# replace when using LUIS cluster
+# conda create -y -n tag python=3.7
+# conda activate tag
 # run this script from the root of the project
-
 
 echo "creating data directory..."
 mkdir data
 
 echo "Starting TAG environment setup..."
-
-#############################################################################################################
-#                                           creating the miniconda env                                      #
-#############################################################################################################
-#replace when using LUIS cluster
-echo "Creating conda environment..."
-conda create -y -n tag python=3.7
-
-echo "Activating conda environment..."
-conda activate tag
-
 
 #############################################################################################################
 #                                         installing required packages                                      #
