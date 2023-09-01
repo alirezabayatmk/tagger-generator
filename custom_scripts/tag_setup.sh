@@ -19,14 +19,17 @@ echo "Starting TAG environment setup..."
 echo "Installing ipykernel..."
 conda install -y ipykernel
 
-echo "Installing data-prep requirements.txt..."
-pip install -r tag-and-generate-data-prep/requirements.txt
+# echo "Installing data-prep requirements.txt..."
+# pip install -r tag-and-generate-data-prep/requirements.txt
 
-echo "Installing train requirements.txt..."
-pip install -r tag-and-generate-train/requirements.txt
+# echo "Installing train requirements.txt..."
+# pip install -r tag-and-generate-train/requirements.txt
 
-echo "manually installing en-core-web-sm..."
-pip install https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-2.1.0/en_core_web_sm-2.1.0.tar.gz --no-deps
+echo "Installing general requirements.txt..."
+pip install -r requirements.txt
+
+# echo "manually installing en-core-web-sm..."
+# pip install https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-2.1.0/en_core_web_sm-2.1.0.tar.gz --no-deps
 
 
 #############################################################################################################
