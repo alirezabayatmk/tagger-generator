@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# git clone git@github...
-# chmod this file
-# run this script
+# git clone git@github.com:alirezabayatmk/tagger-generator.git
+# chmod +x custom_scripts/tag_setup.sh
+# run this script from the root of the project
 
 
 echo "creating data directory..."
@@ -32,6 +32,14 @@ pip install -r requirements.txt
 
 echo "manually installing en-core-web-sm..."
 pip install https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-2.1.0/en_core_web_sm-2.1.0.tar.gz --no-deps
+
+
+#############################################################################################################
+#                                         running the data preparation                                      #
+#############################################################################################################
+echo "creating the Inappropriateness.tsv file from raw data..."
+python custom_scripts/app_data_preparation.py
+
 
 #############################################################################################################
 #                                         running the data preparation                                      #

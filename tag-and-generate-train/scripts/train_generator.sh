@@ -36,7 +36,7 @@ if [ "$BPE" -eq 1 ]; then
         --bpe \
         --word-dropout 0.05 \
         --lr 1e-3 \
-        --n-epochs 5 \
+        --n-epochs 15 \
         --tokens-per-batch 8000 \
         --clip-grad 1.1 \
         --base-folder "$base_folder"
@@ -53,7 +53,7 @@ else
         --dropout 0.2 \
         --word-dropout 0.05 \
         --lr 1e-3 \
-        --n-epochs 5 \
+        --n-epochs 15 \
         --tokens-per-batch 8000 \
         --clip-grad 1.1 \
         --base-folder "$base_folder"
